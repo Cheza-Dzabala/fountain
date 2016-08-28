@@ -16,13 +16,22 @@
                     {{ csrf_field() }}
                     <div class="alert alert-danger display-hide">
                         <button class="close" data-close="alert"></button>
-                        <span>Enter any username and password. </span>
+                        @if ($errors->has('username'))
+                                        <strong>{{ $errors->first('username') }}</strong>
+                        @endif
+                        @if ($errors->has('password'))
+
+                                <strong>{{ $errors->first('password') }}</strong>
+
+                        @endif
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
-                            <input class="form-control form-control-solid placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="Email" name="email" required/> </div>
-                        <div class="col-xs-6">
-                            <input class="form-control form-control-solid placeholder-no-fix form-group" type="password" autocomplete="off" placeholder="Password" name="password" required/> </div>
+                        <div class="col-xs-6 ">
+                            <input class="form-control form-control-solid placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="username" name="username" required/>
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control form-control-solid placeholder-no-fix form-group" type="password" autocomplete="off" placeholder="Password" name="password" required/>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4">

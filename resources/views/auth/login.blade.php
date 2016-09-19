@@ -14,53 +14,37 @@
                 </p>
                 <form action="{{ url('/login') }}" class="login-form" method="post">
                     {{ csrf_field() }}
-                    <div class="alert alert-danger display-hide">
-                        <button class="close" data-close="alert"></button>
+
+                    <div class="form-group has-feedback has-feedback-left form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                        <div class="form-control-feedback">
+                            <i class="icon-user text-muted"></i>
+                        </div>
+
                         @if ($errors->has('username'))
+                            <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
                         @endif
+                    </div>
+
+                    <div class="form-group has-feedback has-feedback-left form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                         <input type="password" name="password" class="form-control" placeholder="Password">
+                        <div class="form-control-feedback">
+                            <i class="icon-lock2 text-muted"></i>
+                        </div>
                         @if ($errors->has('password'))
-
+                            <span class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>
-
+                            </span>
                         @endif
                     </div>
-                    <div class="row">
-                        <div class="col-xs-6 ">
-                            <input class="form-control form-control-solid placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="username" name="username" required/>
-                        </div>
-                        <div class="col-xs-6 form-group">
-                            <input class="form-control form-control-solid placeholder-no-fix form-group" type="password" autocomplete="off" placeholder="Password" name="password" required/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="rememberme mt-checkbox mt-checkbox-outline">
-                                <input type="checkbox" name="remember" value="1" /> Remember me
-                                <span></span>
-                            </label>
-                        </div>
-                        <div class="col-sm-8 text-right">
-                            <div class="forgot-password">
-                                <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
-                            </div>
-                            <button class="btn blue" type="submit">Sign In</button>
-                        </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn blue uppercase pull-right">Login</button>
                     </div>
                 </form>
 
-                <!-- BEGIN FORGOT PASSWORD FORM -->
-                <form class="forget-form" action="javascript:;" method="post">
-                    <h3>Forgot Password ?</h3>
-                    <p> Enter your e-mail address below to reset your password. </p>
-                    <div class="form-group">
-                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
-                    <div class="form-actions">
-                        <button type="button" id="back-btn" class="btn blue btn-outline">Back</button>
-                        <button type="submit" class="btn blue uppercase pull-right">Submit</button>
-                    </div>
-                </form>
-                <!-- END FORGOT PASSWORD FORM -->
             </div>
             <div class="login-footer">
                 <div class="row bs-reset">

@@ -4,9 +4,15 @@
     </a>
     <ul class="dropdown-menu pull-left" style="min-width: 250px">
         <li>
-            <a href="#" class="nav-link">
+            <a href="{{ route('clients.new') }}" class="nav-link">
                 <i class="fa fa-user-plus"></i>
                 Create New
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('employers') }}" class="nav-link">
+                <i class="fa fa-users"></i>
+                Employer Directory
             </a>
         </li>
         <li>

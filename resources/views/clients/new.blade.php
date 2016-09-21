@@ -47,7 +47,9 @@
                             </div>
                         </div>
                         <div class="portlet-body form">
-                            <form class="form-horizontal" action="#" id="submit_form" method="POST">
+                                {!! Form::open(array('route' => 'clients.save', 'files' => true, 'class' => 'form-horizontal', 'method' => 'POST', 'id' => 'submit_form')) !!}
+
+                                {{ csrf_field() }}
                                 <div class="form-wizard">
                                     <div class="form-body">
                                         <ul class="nav nav-pills nav-justified steps">
@@ -66,22 +68,22 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#tab3" data-toggle="tab" class="step active">
+                                                <a href="#tab3" data-toggle="tab" class="step">
                                                     <span class="number"> 3 </span>
                                                     <span class="desc">
                                                                                     <i class="fa fa-check"></i> Employment &<br/> Financial </span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#tab4" data-toggle="tab" class="step active">
-                                                    <span class="number"> 3 </span>
+                                                <a href="#tab4" data-toggle="tab" class="step">
+                                                    <span class="number"> 4 </span>
                                                     <span class="desc">
                                                                                     <i class="fa fa-check"></i> Identification </span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#tab5" data-toggle="tab" class="step">
-                                                    <span class="number"> 4 </span>
+                                                <a href="#tab5" data-toggle="tab" class="step active">
+                                                    <span class="number"> 5 </span>
                                                     <span class="desc">
                                                                                     <i class="fa fa-check"></i> Confirm </span>
                                                 </a>
@@ -102,7 +104,7 @@
                                                         <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-4">
-                                                        <input type="text" class="form-control" name="firstName" required/>
+                                                        <input type="text" class="form-control" name="firstName" value="{{ old('firstName') }}" required/>
                                                         <span class="help-block"> Provide client's First Name </span>
                                                     </div>
                                                 </div>
@@ -112,7 +114,7 @@
                                                         <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-4">
-                                                        <input type="text" class="form-control" name="lastName" required/>
+                                                        <input type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required/>
                                                         <span class="help-block"> Provide client's last Name </span>
                                                     </div>
                                                 </div>
@@ -121,7 +123,7 @@
                                                     <label class="control-label col-md-3">Other Names
                                                     </label>
                                                     <div class="col-md-4">
-                                                        <input type="text" class="form-control" name="otherNames" />
+                                                        <input type="text" class="form-control" name="otherNames" value="{{ old('otherNames') }}" />
                                                     </div>
                                                 </div>
 
@@ -186,6 +188,24 @@
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <label class="control-label col-md-3">Primary Email Address
+                                                    </label>
+                                                    <div class="col-md-4">
+                                                        <input type="text" class="form-control" name="primaryEmailAddress"  />
+                                                        <span class="help-block"> Please Provide Primary Email Address </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Secondary Email Address
+                                                    </label>
+                                                    <div class="col-md-4">
+                                                        <input type="text" class="form-control" name="secondaryEmailAddress"  />
+                                                        <span class="help-block"> Please Provide Secondary Email Address </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                     <label class="control-label col-md-3">Physical Address
                                                         <span class="required"> * </span>
                                                     </label>
@@ -211,10 +231,9 @@
                                                     </label>
                                                     <div class="col-md-4">
                                                         <select class="form-control" name="locationId" >
-                                                            <option value="1">Blantyre</option>
-                                                            <option value="2">Lilongwe</option>
-                                                            <option value="3">Mzuzu</option>
-                                                            <option value="4">Zomba</option>
+                                                            @foreach($locations as $location)
+                                                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                            @endforeach
                                                         </select>
                                                         <span class="help-block"> Provide your city or town </span>
                                                     </div>
@@ -313,11 +332,10 @@
                                                         <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-4">
-                                                        <select placeholder="" class="form-control" name="idType" required>
-                                                            <option value="1">Passport</option>
-                                                            <option value="2">Driver License</option>
-                                                            <option value="3">Traffic Registration Card</option>
-                                                            <option value="4">Voters Registration Card</option>
+                                                        <select class="form-control" name="idType" required>
+                                                            @foreach($ids as $id)
+                                                                <option value="{{ $id->id }}">{{ $id->name }}</option>
+                                                            @endforeach
                                                         </select>
                                                         <span class="help-block"> Provide clients identification type</span>
                                                     </div>
@@ -540,9 +558,9 @@
                                                 <a href="javascript:;" class="btn btn-outline green button-next"> Continue
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
-                                                <a href="javascript:;" class="btn green button-submit"> Submit
+                                                <button type="submit" class="btn green button-submit"> submit
                                                     <i class="fa fa-check"></i>
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -557,7 +575,7 @@
     </div>
 @endsection
 
-@section('plugins)
+@section('plugins')
     <script src="{{ asset('../assets/global/plugins/select2/js/select2.full.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('../assets/global/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('../assets/global/plugins/jquery-validation/js/additional-methods.min.js') }}" type="text/javascript"></script>
@@ -565,7 +583,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('../assets/pages/scripts/form-wizard.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('../assets/pages/scripts/form-wizard.js') }}" type="text/javascript"></script>
 
 
     <script type="text/javascript">

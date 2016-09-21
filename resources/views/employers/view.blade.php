@@ -23,7 +23,6 @@
                 </div>
             </div>
             <div class="portlet-body form">
-
                <div class="row">
                    <div class="form-group">
                        <label class="control-label col-md-4">Name:</label>

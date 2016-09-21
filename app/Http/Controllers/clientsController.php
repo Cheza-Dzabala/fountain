@@ -12,7 +12,9 @@ class clientsController extends Controller
     //
     public function index()
     {
-        return view('clients.index');
+        $clientClass = new clientsClass();
+        $clients = $clientClass->clientIndex();
+        return $clients;
     }
 
 
@@ -21,6 +23,20 @@ class clientsController extends Controller
         $clientClass = new clientsClass();
         $clientDependencies = $clientClass->createClient();
         return $clientDependencies;
+    }
+
+    public function saveClient(Request $request)
+    {
+        $clientClass = new clientsClass();
+        $saveClient = $clientClass->saveClient($request);
+        return $saveClient;
+    }
+
+    public function viewClient($id)
+    {
+        $clientClass = new clientsClass();
+        $client = $clientClass->viewClient($id);
+        return $client;
 
     }
 }

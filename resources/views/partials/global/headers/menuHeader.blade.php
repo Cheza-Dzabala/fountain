@@ -29,7 +29,7 @@
                 @include('partials.global.headers.menus.systemUsers')
                 @include('partials.global.headers.menus.help')
                 <li class="pull-right">
-                    <a href="#">
+                    <a href="{{ route('settings') }}">
                       System Settings
                     </a>
                 </li>

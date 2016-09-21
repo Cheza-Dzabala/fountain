@@ -31,10 +31,26 @@ Route::group(['middleware' => 'auth'], function(){
             'uses' => 'clientsController@index'
         ]
     );
+
+
     Route::get('/clients/new',
         [
             'as' => 'clients.new',
             'uses' => 'clientsController@newClient'
+        ]
+    );
+
+    Route::post('clients/save',
+        [
+            'as' => 'clients.save',
+            'uses' => 'clientsController@saveClient'
+        ]
+    );
+
+    Route::get('/clients/{id}',
+        [
+            'as' => 'client.view',
+            'uses' => 'clientsController@viewClient'
         ]
     );
 
@@ -86,6 +102,85 @@ Route::group(['middleware' => 'auth'], function(){
             'uses' => 'employerController@updateEmployer'
         ]
     );
+
+    //Settings Paths
+    Route::get('settings',
+        [
+            'as' => 'settings',
+            'uses' => 'settingsController@index'
+        ]
+    );
+
+    Route::get('settings/clients/ids',
+        [
+            'as' => 'settings.clients.ids',
+            'uses' => 'settingsController@clientsIds'
+        ]
+    );
+
+    Route::post('settings/clients/ids/save',
+        [
+            'as' => 'settings.clients.id.saveNew',
+            'uses' => 'settingsController@saveNewIds'
+        ]
+    );
+
+    Route::post('settings/clients/ids/update/{id}',
+        [
+            'as' => 'settings.clients.id.update',
+            'uses' => 'settingsController@updateId'
+        ]
+    );
+
+    Route::get('settings/clients/ids/edit/{name}',
+        [
+            'as' => 'settings.clients.id.edit',
+            'uses' => 'settingsController@editId'
+        ]
+    );
+
+    Route::get('settings/clients/ids/delete/{id}',
+        [
+            'as' => 'settings.clients.ids.delete',
+            'uses' => 'settingsController@deleteIds'
+        ]
+    );
+
+    Route::get('settings/clients/locations/',
+        [
+            'as' => 'settings.clients.locations',
+            'uses' => 'settingsController@clientsLocations'
+        ]
+    );
+
+    Route::post('settings/clients/locations/save',
+        [
+            'as' => 'settings.clients.locations.saveNew',
+            'uses' => 'settingsController@saveNewLocation'
+        ]
+    );
+
+    Route::get('settings/clients/locations/delete/{id}',
+        [
+            'as' => 'settings.clients.locations.delete',
+            'uses' => 'settingsController@deleteLocation'
+        ]
+    );
+
+    Route::get('settings/clients/locations/edit/{name}',
+        [
+            'as' => 'settings.clients.location.edit',
+            'uses' => 'settingsController@editLocation'
+        ]
+    );
+
+    Route::post('settings/clients/locations/update/{id}',
+        [
+            'as' => 'settings.clients.location.update',
+            'uses' => 'settingsController@updateLocation'
+        ]
+    );
+
 
 
 

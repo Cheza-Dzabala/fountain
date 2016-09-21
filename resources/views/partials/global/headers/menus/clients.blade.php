@@ -9,6 +9,15 @@
                 Create New
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('clients') }}" class="nav-link">
+                <i class="fa fa-user-plus"></i>
+                Client Directory
+            </a>
+        </li>
+
+
         <li>
             <a href="{{ route('employers') }}" class="nav-link">
                 <i class="fa fa-users"></i>

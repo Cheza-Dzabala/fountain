@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class updateEmployerRequest extends Request
+class newIdsRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,8 @@ class updateEmployerRequest extends Request
     {
         return [
             //
-            'name' => 'required',
-            'contactPerson' => 'required',
-            'primaryContactNumber' => 'required',
-            'secondaryContactNumber' => 'required',
-            'physicalAddress' => 'required',
-            'postalAddress' => 'required',
-
+            'name' => 'required|unique:ids',
+            'isAccepted' => 'required'
         ];
     }
 }

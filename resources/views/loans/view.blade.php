@@ -28,6 +28,9 @@
                     <button type="button" data-toggle="modal" href="#manageLoan" class="btn blue-hoki">
                         Manage Loan Status
                     </button>
+                    <button type="button" data-toggle="modal" href="#manageLoan" class="btn btn-warning">
+                        Payment Schedule
+                    </button>
                     @endpermission
                     @ability('admin', 'disburse-funds')
                         @if($loan->applicationStatus == 'Approved')

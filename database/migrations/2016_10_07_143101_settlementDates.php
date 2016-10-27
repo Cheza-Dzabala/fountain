@@ -19,6 +19,8 @@ class SettlementDates extends Migration
             $table->date('settlementDate');
             $table->string('principle');
             $table->string('interest');
+            $table->string('total');
+            $table->string('balance');
             $table->string('isSettled');
             $table->timestamps();
         });

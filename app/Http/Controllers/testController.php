@@ -25,11 +25,27 @@ class testController extends Controller
         }
 
         $amount = pmt($interest, $months, $loanAmount);
-        echo "Your payment will be " . number_format($amount, 2) . " a month, for " . $months . " months".'<br/>';
+        echo "Your payment will be " . number_format($amount, 2) . " a month, for " . $months . " months".'<br/>'.'<br/>';
 
-        echo  'Schedule'.'<br/>';
+        echo  'Schedule'.'<br/>'.'<br/>';
+
+        $balance = $loanAmount;
+        $interest = $balance * 0.10;
+        $principle = $amount - $interest;
 
 
+        $i = 0;
+        while ($i < $months)
+        {
+            $curr = $i + 1;
+            $total = $principle+$interest;
+            echo 'In Month '. $curr.' Balance is '.number_format($balance, 2).
+                ' Principle is '.number_format($principle, 2).' Interest Is '.number_format($interest, 2).'Paying a Total Of '.$total.'<br/>'.'<br/>';
+            $balance = $balance - $principle;
+            $interest = $balance * 0.10;
+            $principle = $amount - $interest;
+            $i++;
+        }
     }
 
     public function loadPage()

@@ -10,6 +10,7 @@ namespace App\Classes\websystem\loans;
 
 
 use App\applicationStatus;
+use App\armotizationSchedule;
 use App\Clients;
 use App\disbursements;
 use App\loanDetails;
@@ -46,6 +47,9 @@ class loansClass
 
         //Process Files
         $loanId = $this->createLoan($request);
+
+        //Armotization Schedule
+        $this->amortization($loanId);
 
         //Process Images
         $this->processSecurityImages($request, $loanId);
@@ -290,6 +294,60 @@ class loansClass
             $i ++;
         }
 
+    }
+
+    /**
+     * @param $loanId
+     */
+    private function amortization($loanId)
+    {
+        $loan = loans::whereId($loanId)->first();
+        $loanType = loanTypes::whereId($loan->loanType)->first();
+
+        $loanAmount = $loan->loanAmount;
+        $interestRate = $loanType->interestRate;
+        $interestRate = $interestRate / 1200;
+       // dd($interestRate);
+        $months = $loan->loanRepaymentPeriod;
+
+        function pmt($interestRate, $months, $loanAmount)
+        {
+           // dd($interestRate);
+            return ($interestRate * -$loanAmount * pow((1 + $interestRate), $months) / (1 - pow((1 + $interestRate), $months)));
+        }
+
+        $amount = pmt($interestRate, $months, $loanAmount);
+        echo "Your payment will be " . number_format($amount, 2) . " a month, for " . $months . " months".'<br/>'.'<br/>';
+
+        echo  'Schedule'.'<br/>'.'<br/>';
+       // dd($amount);
+        $balance = $loanAmount;
+      // dd($balance);
+        $interest = $balance * $interestRate;
+        //dd($interest);
+        $principle = $amount - $interest;
+        //dd($principle);
+        $i = 1;
+
+        while ($i <= $months) {
+            $curr = Carbon::now()->addMonths($i);
+            $total = $principle + $interest;
+
+            armotizationSchedule::create([
+                'loanId' => $loanId,
+                'settlementDate' => $curr,
+                'principle' => $principle,
+                'interest' => $interest,
+                'isSettled' => '0',
+                'balance' => $balance,
+                'total' => $total
+            ]);
+
+            $balance = $balance - $principle;
+            $interest = $balance * $interestRate;
+            $principle = $amount - $interest;
+            $i++;
+        }
     }
 
     /**

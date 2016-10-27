@@ -4,7 +4,7 @@
     </a>
     <ul class="dropdown-menu pull-left" style="min-width: 250px">
         <li>
-            <a href="#" class="nav-link">
+            <a href="{{ route('users.new') }}" class="nav-link">
                 <i class="fa fa-user-plus"></i>
                 Create New
             </a>

@@ -2,7 +2,7 @@
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html lang="en" ng-app="fountainMF">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 
@@ -67,7 +67,7 @@
                             </div>
                             <!-- END PAGE TITLE -->
                             <!-- BEGIN PAGE TOOLBAR -->
-                            <div class="page-toolbar">
+                            <div class="page-toolbar" >
                                 <div class="row" style="margin-top: 1%">
                                     <span href="javascript:;" class="btn dropdown-toggle darkCyan" data-toggle="dropdown">
                                         <h4>Quick Links | </h4>
@@ -87,7 +87,6 @@
                                     <a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
                                         <i class="icon-settings"></i>
                                     </a>
-
                                 </div>
                             </div>
                             <!-- END PAGE TOOLBAR -->
@@ -144,6 +143,11 @@
 <script src="{{ asset('../assets/global/plugins/excanvas.min.js') }}"></script>
 <![endif]-->
 <!-- BEGIN CORE PLUGINS -->
+<script src="{{ asset('../node_modules/angular/angular.js') }}" type="text/javascript"></script>
+
+
+
+
 <script src="{{ asset('../assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('../assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('../assets/global/plugins/js.cookie.min.js') }}" type="text/javascript"></script>
@@ -151,6 +155,9 @@
 <script src="{{ asset('../assets/global/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
+
+
+<script src="{{ asset('/angular/app.js') }}" type="text/javascript"></script>
 
 <!-- BEGIN PAGE PLUGINS -->
 @yield('plugins')

@@ -15,31 +15,18 @@
                         Create New Application
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#" class="nav-link">
-                                Personal Loan
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link">
-                                Business Loan
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link">
-                                Special Loan
-                            </a>
-                        </li>
+                       @foreach($loanTypes as $type)
+                            <li>
+                                <a href="{{ route('loans.new', $type->id) }}" class="nav-link">
+                                    {{ $type->name }}
+                                </a>
+                            </li>
+                       @endforeach
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="nav-link">
-                        View Pending Applications
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">
-                        Remove Unnaproved Applications
+                    <a href="{{ route('loans.index') }}" class="nav-link">
+                        View All Applications
                     </a>
                 </li>
                 <li>
@@ -80,36 +67,20 @@
                 <span class="arrow"></span>
             </a>
             <ul class="dropdown-menu">
-                <li class="dropdown-submenu">
-                    <a href="#" class="nav-link">
-                        Personal Loans
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#" class="nav-link">
-                                Set Scheme Attributes
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown-submenu">
-                    <a href="#" class="nav-link">
-                        Business Loans
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#" class="nav-link">
-                                Set Scheme Attributes
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="nav-link">
-                        Create New Loan Scheme
-                    </a>
-                </li>
-
+                @foreach($loanTypes as $type)
+                    <li class="dropdown-submenu">
+                        <a href="#" class="nav-link">
+                            {{ $type->name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ route('settings.loanType.edit', $type->name) }}" class="nav-link">
+                                    Set Scheme Attributes
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endforeach
             </ul>
         </li>
         <li class="dropdown-submenu">

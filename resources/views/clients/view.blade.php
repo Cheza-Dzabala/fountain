@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <div class="row" style="align-content: center">
+    <div class="row" style="align-content: center" ng-controller="clientProfileEditController as clientEdit">
 
         <div class="portlet light  col-md-12 ">
             <div class="portlet-title">
@@ -27,21 +27,34 @@
                 <div class="row">
                     <h4 class="form-section">Personal Details
                     <span class="pull-right" style="margin-top: 8px">
-                        <a href="" type="button" class="btn blue-oleo">
+                        <a ng-click="clientEdit.EditPersonalDetailsYes()" type="button" class="btn blue-oleo" ng-show="clientEdit.EditPersonalDetails == 'no'">
                             Edit Section
                         </a>
+
+                        <a ng-click="clientEdit.saveSection()" type="button" class="btn blue-green" ng-show="clientEdit.EditPersonalDetails == 'yes'">
+                            Save Section
+                        </a>
+
+                        <a ng-click="clientEdit.EditPersonalDetailsNo()" type="button" class="btn blue-oleo" ng-show="clientEdit.EditPersonalDetails == 'yes'">
+                          Cancel
+                        </a>
+
                     </span>
                     </h4>
 
                     <div class="col-md-3">
                         <img src="{{ asset($client->clientImage) }}" style="height: 250px; width: 250px">
+                        <input type="hidden" name="clientID" value="{{ $client->id }}">
                     </div>
                     <div class="col-md-8">
                         <div class="row">
                             <div class="form-group">
                                 <label class="control-label col-md-4">First Name:</label>
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'no'">
                                     {{ $client->firstName }}
+                                </div>
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'yes'">
+                                   <input type="text" class="col-md-6 form-control" name="firstName" value="{{ $client->firstName }}">
                                 </div>
                             </div>
                         </div>
@@ -49,8 +62,11 @@
                         <div class="row">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Last Name:</label>
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'no'">
                                     {{ $client->lastName }}
+                                </div>
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'yes'">
+                                    <input type="text" class="col-md-6 form-control" name="lastName" value="{{ $client->lastName }}">
                                 </div>
                             </div>
                         </div>
@@ -58,32 +74,57 @@
                         <div class="row">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Other Names:</label>
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'no'">
                                     @if($client->otherName == null)
                                        <span class="text-danger">None Provided</span>
+                                        @else
+                                        <div class="col-md-6">
+                                            {{ $client->otherName }}
+                                        </div>
                                     @endif
                                 </div>
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'yes'">
+                                    <input type="text" class="col-md-6 form-control" name="otherName" value="{{ $client->otherName }}">
+                                </div>
+
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Date Of Birth:</label>
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'no'">
                                     {{ $client->dateOfBirth }}
                                 </div>
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'yes'">
+                                    <input type="date" class="col-md-6 form-control" name="dateOfBirth" value="{{ $client->dateOfBirth }}">
+                                </div>
+
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Gender:</label>
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'no'">
                                     @if($client->gender == 'M')
                                         Male
                                     @else
                                         Female
                                     @endif
+                                </div>
+                                <div class="col-md-6" ng-show="clientEdit.EditPersonalDetails == 'yes'">
+                                    <label>Accepted Status  </label>
+                                    <div class="mt-radio-list">
+                                        <label class="mt-radio"> Male
+                                            <input type="radio" value="M" name="gender" @if($client->gender == 'M') checked @endif/>
+                                            <span></span>
+                                        </label>
+                                        <label class="mt-radio"> Female
+                                            <input type="radio" value="F" name="gender" @if($client->gender == 'F') checked @endif/>
+                                            <span></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -321,5 +362,5 @@
 @endsection
 
 @section('scripts')
-
+    <script src="{{ asset('/angular/controllers/clientProfileEdit.js') }}" type="text/javascript"></script>
 @endsection

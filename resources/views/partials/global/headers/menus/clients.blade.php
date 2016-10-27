@@ -12,7 +12,7 @@
 
         <li>
             <a href="{{ route('clients') }}" class="nav-link">
-                <i class="fa fa-user-plus"></i>
+                <i class="fa fa-users"></i>
                 Client Directory
             </a>
         </li>
@@ -22,12 +22,6 @@
             <a href="{{ route('employers') }}" class="nav-link">
                 <i class="fa fa-users"></i>
                 Employer Directory
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link">
-                <i class="fa fa-users"></i>
-                Show All
             </a>
         </li>
         <li>

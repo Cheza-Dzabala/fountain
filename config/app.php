@@ -162,6 +162,7 @@ return [
         App\Providers\loanApplicationMenuProvider::class,
         App\Providers\dashboardProvider::class,
         App\Providers\dashboardTilesProvider::class,
+        App\Providers\duePaymentsProvider::class,
 
 
     ],
@@ -213,6 +214,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Collection' => \Illuminate\Database\Eloquent\Collection::class,
 
 
     ],

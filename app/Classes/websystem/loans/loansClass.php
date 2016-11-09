@@ -48,9 +48,6 @@ class loansClass
         //Process Files
         $loanId = $this->createLoan($request);
 
-        //Armotization Schedule
-        $this->amortization($loanId);
-
         //Process Images
         $this->processSecurityImages($request, $loanId);
 
@@ -112,8 +109,15 @@ class loansClass
         $today = Carbon::today()->toDateString();
         $completion = Carbon::now()->addMonths($loan->loanRepaymentPeriod)->toDateString();
 
+
+        //Armotization Schedule
+        $this->amortization($id);
+
+
         $loan->disbursementDate = $today;
         $loan->expectedDateOfCompletion = $completion;
+
+        $loan->isActive = 1;
         $loan->save();
 
         $disbursement = disbursements::create([
@@ -124,6 +128,7 @@ class loansClass
             'date' => $today,
         ]);
 
+        return redirect()->route('loan.view', $id);
     }
 
     /**
@@ -328,11 +333,11 @@ class loansClass
         $principle = $amount - $interest;
         //dd($principle);
         $i = 1;
+        $date = Carbon::now();
 
         while ($i <= $months) {
-            $curr = Carbon::now()->addMonths($i);
+            $curr = $date->addMonths(1);
             $total = $principle + $interest;
-
             armotizationSchedule::create([
                 'loanId' => $loanId,
                 'settlementDate' => $curr,
@@ -347,6 +352,7 @@ class loansClass
             $interest = $balance * $interestRate;
             $principle = $amount - $interest;
             $i++;
+            $date = $curr;
         }
     }
 

@@ -47,8 +47,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link">
-                        Manage Active Loans
+                    <a href="{{ route('payments.due') }}" class="nav-link">
+                        View Due Payments
                     </a>
                 </li>
                 <li>

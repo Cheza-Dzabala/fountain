@@ -170,6 +170,18 @@ Route::group(['middleware' => 'auth'], function(){
         ]
     );
 
+    Route::get('amortization/{id}',
+        [
+            'as' => 'schedule',
+            'uses' => 'amortizationController@index'
+        ]);
+
+    Route::get('payments/due',
+        [
+           'as' => 'payments.due',
+            'uses' => 'paymentsController@due'
+        ]);
+
     Route::group(['middleware' => ['permission:approve-loans']], function(){
         Route::post('loans/changeState/{id}',
             [

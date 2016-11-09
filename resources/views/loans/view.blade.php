@@ -28,9 +28,11 @@
                     <button type="button" data-toggle="modal" href="#manageLoan" class="btn blue-hoki">
                         Manage Loan Status
                     </button>
-                    <button type="button" data-toggle="modal" href="#manageLoan" class="btn btn-warning">
-                        Payment Schedule
-                    </button>
+                    @if($loan->disbursementDate != null)
+                        <a type="button" data-toggle="modal" href="{{ route('schedule', $loan->id) }}" class="btn btn-warning">
+                            Payment Schedule
+                        </a>
+                    @endif
                     @endpermission
                     @ability('admin', 'disburse-funds')
                         @if($loan->applicationStatus == 'Approved')

@@ -89,26 +89,35 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            new Morris.Bar({
-                element: 'disburseVScollect',
-                data: [
-                    {y: 'January', a: 4000000, b: 3500000},
-                    {y: 'February', a: 2750000, b: 1000500},
-                    {y: 'March', a: 3750000, b: 3750000},
-                    {y: 'April', a: 4500000, b: 4250000},
-                    {y: 'May', a: 4000000, b: 4000000},
-                    {y: 'June', a: 4000000, b: 3255800},
-                    {y: 'July', a: 3540000, b: 2100000},
-                    {y: 'August', a: 3400000, b: 2750000},
-                    {y: 'September', a: 3500000, b: 3250000},
-                    {y: 'October', a: 1750000, b: 900000},
-                    {y: 'November', a: 2310000, b: 2000000},
-                    {y: 'December', a: 4500000, b: 3410000}
-                ],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Disbursed', 'Collected']
+
+            $.ajax({
+                type: 'GET',
+                url: 'api/loadCharts/',
+                datatype: 'json',
+                timeout: 10000,
+                success: function(result){
+                    console.log(result);
+                    chart.setData(JSON.parse(result));
+                },
+                error: function(data){
+                    console.log(data);
+                }
             });
+
+
+            var chart = Morris.Bar({
+                // ID of the element in which to draw the chart.
+                element: 'disburseVScollect',
+                data: [0, 0], // Set initial data (ideally you would provide an array of default data)
+                xkey: 'y', // Set the key for X-axis
+                ykeys: ['a', 'b'], // Set the key for Y-axis
+                labels: ['Disbursed', 'Collected'] // Set the label when bar is rolled over
+            });
+
+
+
+
+
         });
     </script>
 

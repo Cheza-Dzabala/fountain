@@ -50,13 +50,23 @@
                                             <span style="color: red"> Unsettled </span>
                                         @endif</td>
                                     <td>
-                                        <a>
-                                            Mark As Defaulted
-                                        </a>
-                                        <a>
-                                            Mark As Paid
-                                        </a>
-
+                                        @if($schedule->isSettled == 0)
+                                          @if($schedule->settlementDate <= (\Carbon\Carbon::now()->toDateString()))
+                                                <a>
+                                                    Mark As Defaulted
+                                                </a>
+                                           @elseif(
+                                                    $schedule->settlementDate >= (\Carbon\Carbon::now()->toDateString())
+                                                        &&
+                                                    $schedule->settlementDate <= (\Carbon\Carbon::now()->addMonths(1)->toDateString())
+                                                    )
+                                                <a>
+                                                    Mark As Paid
+                                                </a>
+                                           @endif
+                                        @else
+                                            <a href="{{ route('payments.details', $schedule->id) }}">Settlement Details</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 <?php $i += 1 ?>

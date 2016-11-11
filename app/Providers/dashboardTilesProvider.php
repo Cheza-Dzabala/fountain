@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\armotizationSchedule;
 use App\disbursements;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,8 +19,9 @@ class dashboardTilesProvider extends ServiceProvider
         //
         view()->composer('partials.dashboard.dashboardTiles', function ($view) {
             $totalDisbursed = disbursements::sum('disbursedAmount');
+            $totalCollected = armotizationSchedule::whereIssettled(1)->sum('total');
 
-            return $view->with('totalDisbursed', $totalDisbursed);
+            return $view->with(['totalDisbursed' => $totalDisbursed, 'totalCollected' => $totalCollected]);
         });
     }
 

@@ -176,12 +176,24 @@ Route::group(['middleware' => 'auth'], function(){
             'uses' => 'amortizationController@index'
         ]);
 
+    Route::get('payments/settlementDetails/{id}',
+        [
+            'as' => 'payments.details',
+            'uses' => 'paymentsController@details'
+        ]);
+
+
     Route::get('payments/due',
         [
            'as' => 'payments.due',
             'uses' => 'paymentsController@due'
         ]);
 
+    Route::post('payments/due',
+        [
+           'as' => 'payments.save',
+            'uses' => 'paymentsController@save'
+        ]);
     Route::group(['middleware' => ['permission:approve-loans']], function(){
         Route::post('loans/changeState/{id}',
             [
@@ -412,15 +424,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 });
 
-
-
-Route::group(['middleware' => ['web']], function () {
-
-    // Put your routes inside here
-
-    Route::post('api/savePersonalDetails',
-        [
-            'uses' => 'apiController@savePersonalDetails'
-        ]
-    );
+Route::group(['middleware' => ['web', 'CORS'], 'prefix' => 'api'], function (){
+   Route::get('loadCharts',
+       [
+           'uses' => 'API\apiController@chartData'
+       ]);
 });
+

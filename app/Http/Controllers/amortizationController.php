@@ -15,7 +15,6 @@ class amortizationController extends Controller
     {
         $schedules = armotizationSchedule::whereLoanid($id)->orderBy('id', 'ASC')->get();
 
-
         return view('amortization.index', compact('schedules'));
     }
 }

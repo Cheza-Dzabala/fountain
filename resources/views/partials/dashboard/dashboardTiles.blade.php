@@ -36,12 +36,12 @@
 <div class="col-md-4">
     <!-- BEGIN WIDGET THUMB -->
     <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
-        <h4 class="widget-thumb-heading">Biggest EXPENSE</h4>
+        <h4 class="widget-thumb-heading">Current Collected</h4>
         <div class="widget-thumb-wrap">
             <i class="widget-thumb-icon bg-purple icon-screen-desktop"></i>
             <div class="widget-thumb-body">
                 <span class="widget-thumb-subtitle">MWK</span>
-                <span class="widget-thumb-body-stat" data-counter="counterup" data-value="815">120,000</span>
+                <span class="widget-thumb-body-stat" data-counter="counterup">{{ number_format($totalCollected, 2) }}</span>
             </div>
         </div>
     </div>

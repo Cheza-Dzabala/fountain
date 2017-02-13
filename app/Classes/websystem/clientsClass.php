@@ -5,6 +5,8 @@ namespace App\Classes\websystem;
 use App\Clients;
 use App\employers;
 use App\employmentRecords;
+use App\Events\Event;
+use App\Events\newClientEvent;
 use App\ids;
 use App\locations;
 use App\User;
@@ -81,6 +83,7 @@ class clientsClass {
             $img = Image::make($file);
             $destinationPath = 'uploads/Clients/';
             $filename = str_random(32) . '.' . $file->getClientOriginalExtension();
+            if(!file_exists($destinationPath)) \File::makeDirectory($destinationPath, 0777, true);
             $client_save_path = $destinationPath . $filename;
             $img->save($client_save_path, 60);
         }
@@ -89,12 +92,13 @@ class clientsClass {
             $file = $request->file('idImage');
             $img = Image::make($file);
             $destinationPath = 'uploads/Ids/';
+            if(!file_exists($destinationPath)) \File::makeDirectory($destinationPath, 0777, true);
             $filename = str_random(32) . '.' . $file->getClientOriginalExtension();
             $id_save_path = $destinationPath . $filename;
             $img->save($id_save_path, 60);
             return array($client_save_path, $id_save_path);
         }
-        return array($client_save_path, $id_save_path);
+       // return array($client_save_path, $id_save_path);
     }
 
     /**
@@ -133,6 +137,9 @@ class clientsClass {
             'createdBy' => Auth::user()['id'],
             'clientRemarks' => $request->clientRemarks,
         ]);
+
+        event(new newClientEvent('New Client Created', $client->createdBy, '/clients/'.$client->id));
+
         return $client;
     }
 

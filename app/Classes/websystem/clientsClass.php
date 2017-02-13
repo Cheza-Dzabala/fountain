@@ -138,7 +138,7 @@ class clientsClass {
             'clientRemarks' => $request->clientRemarks,
         ]);
 
-        event(new newClientEvent('New Client Created', $client->createdBy, '/clients/'.$client->id));
+        //event(new newClientEvent('New Client Created', $client->createdBy, '/clients/'.$client->id));
 
         return $client;
     }

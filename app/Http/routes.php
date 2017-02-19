@@ -182,9 +182,9 @@ Route::group(['middleware' => 'auth'], function(){
             'uses' => 'amortizationController@markPaid'
         ]);
 
-    Route::get('amortization/markDefaulted/{$paymentId}',
+    Route::get('amortization/mark_defaulted/{id}/{loanId}',
         [
-            'as' => 'markDefaulted',
+            'as' => 'mark_defaulted',
             'uses' => 'amortizationController@markDefaulted'
         ]);
 

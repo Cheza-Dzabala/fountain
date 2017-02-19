@@ -6,6 +6,7 @@ use App\armotizationSchedule;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class amortizationController extends Controller
 {
@@ -22,6 +23,7 @@ class amortizationController extends Controller
     {
         $payment = armotizationSchedule::whereId($paymentId)->first();
         $payment->isSettled = 1;
+        $payment->paymentLoggedBy = Auth::user()['id'];
         $payment->save();
         return redirect()->route('schedule', $loanId);
     }

@@ -48,7 +48,10 @@
                                             <span style="color: darkgreen">Settled</span>
                                         @else
                                             <span style="color: red"> Unsettled </span>
-                                        @endif</td>
+                                        @elseif($schedule->isDefauled == 1)
+                                                <span style="color: red"> Defaulted </span>
+                                         @endif
+                                    </td>
                                     <td>
                                         @if($schedule->isSettled == 0)
                                           @if($schedule->settlementDate <= (\Carbon\Carbon::now()->toDateString()))

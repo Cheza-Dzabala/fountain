@@ -71,14 +71,14 @@
 
                 <hr>
 
-          {{--      <div class="row">
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-md-4">Processed By:</label>
                         <div class="col-md-6">
                             {{ $user->name }}
                         </div>
                     </div>
-                </div>--}}
+                </div>
 
                 <hr>
 

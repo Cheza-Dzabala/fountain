@@ -176,6 +176,12 @@ Route::group(['middleware' => 'auth'], function(){
             'uses' => 'amortizationController@index'
         ]);
 
+    Route::get('amortization/markPaid/{$paymentId}/{$loanId}',
+        [
+            'as' => 'markPaid',
+            'uses' => 'amortizationController@index'
+        ]);
+
     Route::get('payments/settlementDetails/{id}',
         [
             'as' => 'payments.details',

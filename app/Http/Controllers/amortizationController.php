@@ -17,4 +17,13 @@ class amortizationController extends Controller
 
         return view('amortization.index', compact('schedules'));
     }
+
+    public function markPaid($paymentId, $loanId)
+    {
+        dd('Payment ID: '.$paymentId.' Loan ID:'.$loanId);
+        $payment = armotizationSchedule::whereLoanid($loanId)->whereId($paymentId)->first();
+        $payment->isSettled = 1;
+        $payment->save();
+        return redirect()->route('schedule');
+    }
 }

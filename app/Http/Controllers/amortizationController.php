@@ -27,9 +27,9 @@ class amortizationController extends Controller
         return redirect()->route('schedule');
     }
 
-    public function markDefaulted($paymentId, $loanId)
+    public function markDefaulted($paymentId)
     {
-        $payment = armotizationSchedule::whereLoanid($loanId)->whereId($paymentId)->first();
+        $payment = armotizationSchedule::whereId($paymentId)->first();
         $payment->isDefaulted = 1;
         $payment->save();
         return redirect()->route('schedule');

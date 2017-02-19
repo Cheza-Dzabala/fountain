@@ -48,8 +48,9 @@
                                             <span style="color: darkgreen">Settled</span>
                                         @else
                                             <span style="color: red"> Unsettled </span>
-                                        @elseif($schedule->isDefauled == 1)
-                                                <span style="color: red"> Defaulted </span>
+                                        @endif
+                                        @if($schedule->isDefauled == 1)
+                                                <span style="color: red"> (Defaulted) </span>
                                          @endif
                                     </td>
                                     <td>

@@ -56,7 +56,7 @@
                                     <td>
                                         @if($schedule->isSettled == 0)
                                           @if($schedule->settlementDate <= (\Carbon\Carbon::now()->toDateString()))
-                                                <a>
+                                                <a href="{{ route('mark_defaulted', [$schedule->id, $schedule->loanId]) }}">
                                                     Mark As Defaulted
                                                 </a>
                                            @elseif(

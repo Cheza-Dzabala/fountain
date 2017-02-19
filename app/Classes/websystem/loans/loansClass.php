@@ -236,6 +236,8 @@ class loansClass
     private function processSecurityImages(Request $request, $loanId)
     {
         if (isset($request->loanSecurities)) {
+            $parentDirectory = 'uploads/securities/';
+            if(!file_exists($parentDirectory)) \File::makeDirectory($parentDirectory, 0777, true);
             $destinationPath = 'uploads/securities/' . $request->clientId . '/';
             if(!File::exists($destinationPath))
             {

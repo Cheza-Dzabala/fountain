@@ -64,7 +64,7 @@
                                                         &&
                                                     $schedule->settlementDate <= (\Carbon\Carbon::now()->addMonths(1)->toDateString())
                                                     )
-                                                <a href="{{ route('markPaid', $schedule->id) }}">
+                                                <a href="{{ route('mark_paid', $schedule->id) }}">
                                                     Mark As Paid
                                                 </a>
                                            @endif

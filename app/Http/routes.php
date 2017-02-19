@@ -176,13 +176,13 @@ Route::group(['middleware' => 'auth'], function(){
             'uses' => 'amortizationController@index'
         ]);
 
-    Route::get('amortization/markPaid/{$paymentId}',
+    Route::get('amortization/mark_paid/{id}',
         [
-            'as' => 'markPaid',
+            'as' => 'mark_paid',
             'uses' => 'amortizationController@markPaid'
         ]);
 
-    Route::get('amortization/markDefaulted/{$paymentId}/{$loanId}',
+    Route::get('amortization/markDefaulted/{$paymentId}',
         [
             'as' => 'markDefaulted',
             'uses' => 'amortizationController@markDefaulted'

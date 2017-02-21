@@ -98,7 +98,7 @@ class clientsClass {
             $img->save($id_save_path, 60);
             return array($client_save_path, $id_save_path);
         }
-       // return array($client_save_path, $id_save_path);
+       return array($client_save_path, $id_save_path);
     }
 
     /**

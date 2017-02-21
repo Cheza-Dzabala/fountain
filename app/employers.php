@@ -11,7 +11,7 @@ class employers extends Model
 
     protected  $fillable = [
       'name', 'contactPerson', 'primaryContactNumber', 'secondaryContactNumber', 'physicalAddress', 'postalAddress',
-        'emailAddress', 'createdBy'
+        'emailAddress', 'createdBy', 'registration_number'
     ];
 
 

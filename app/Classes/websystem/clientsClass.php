@@ -159,6 +159,7 @@ class clientsClass {
             ]);
 
             $client->employer_id = $request->employer_id;
+            $client->position = $request->position;
             $client->active_employment_record = $employmentRecord->id;
             $client->save();
         }

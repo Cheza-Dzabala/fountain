@@ -38,5 +38,6 @@ class Clients extends Model
         'employer_id',
         'clientRemarks',
         'active_employment_record',
+        'position',
     ];
 }

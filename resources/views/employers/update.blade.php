@@ -39,6 +39,19 @@
                             @endif
                         </div>
 
+                        <div class="form-group form-md-line-input form-md-floating-label{{ $errors->has('registration_number') ? ' has-error' : '' }}">
+                            <input type="text" class="form-control" id="registration_number" name="registration_number" value="{{ $employer->registration_number }}">
+                            <label for="registration_number">Registration Number</label>
+
+                            @if ($errors->has('registration_number'))
+                                <span class="help-block">
+                                <strong>{{ $errors->first('registration_number') }}</strong>
+                            </span>
+                            @else
+                                <span class="help-block">Business Registered Number...</span>
+                            @endif
+                        </div>
+
                         <div class="form-group form-md-line-input form-md-floating-label{{ $errors->has('contactPerson') ? ' has-error' : '' }}">
                             <input type="text" class="form-control" id="contactPerson" name="contactPerson" value="{{ $employer->contactPerson }}">
                             <label for="contactPerson">Contact Person</label>

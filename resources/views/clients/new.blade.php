@@ -272,6 +272,17 @@
                                                             <span class="help-block"> Provide client's Employer</span>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Position
+                                                        </label>
+                                                         <div class="col-md-4">
+                                                            <input type="text" class="form-control" name="position" />
+                                                            <span class="help-block"> Provide Your Position</span>
+                                                        </div>
+                                                    </div>
+
+
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">Employment Start Date
                                                             <span class="required"> * </span>

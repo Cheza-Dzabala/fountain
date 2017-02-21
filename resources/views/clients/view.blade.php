@@ -214,7 +214,7 @@
                     </div>
                 </div>
                 <!-- END ROW  -->
-                <div class="row">
+
                     <div class="row" style="margin-top: 10px">
                         <h4 class="form-section">Employment & Financial Details
                             <span class="pull-right" style="margin-top: 8px">
@@ -236,6 +236,15 @@
                                         </div>
                                     </div>
                                 </div>
+                              <div class="row">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Position:</label>
+                                        <div class="col-md-6">
+                                            {{ $client->position }}
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="control-label col-md-4">Employment Start Date:</label>
@@ -291,9 +300,9 @@
                                 </div>
                         </div>
                     </div>
-                </div>
+
                 <!-- END ROW  -->
-                <div class="row">
+
                     <div class="row" style="margin-top: 10px">
                         <h4 class="form-section">Identification
                             <span class="pull-right" style="margin-top: 8px">
@@ -353,7 +362,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
 

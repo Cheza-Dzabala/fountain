@@ -96,7 +96,7 @@ class clientsClass {
             $filename = str_random(32) . '.' . $file->getClientOriginalExtension();
             $id_save_path = $destinationPath . $filename;
             $img->save($id_save_path, 60);
-            return array($client_save_path, $id_save_path);
+            //return array($client_save_path, $id_save_path);
         }
        return array($client_save_path, $id_save_path);
     }

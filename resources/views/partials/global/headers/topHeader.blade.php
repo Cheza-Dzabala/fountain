@@ -15,7 +15,7 @@
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
                 <ul class="nav navbar-nav pull-right">
-                    <!-- BEGIN NOTIFICATION DROPDOWN -->
+                    <!-- BEGIN NOTIFICATION DROPDOWN
                     <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <i class="icon-bell"></i>
@@ -43,7 +43,7 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <!-- END NOTIFICATION DROPDOWN -->

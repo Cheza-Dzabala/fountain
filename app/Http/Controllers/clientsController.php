@@ -39,4 +39,18 @@ class clientsController extends Controller
         return $client;
 
     }
+
+    public function employmentUpdate($id)
+    {
+        $clientClass = new clientsClass();
+        $client = $clientClass->employmentUpdate($id);
+        return $client;
+    }
+
+    public function employmentSave(Request $request)
+    {
+        $clientClass = new clientsClass();
+        $client = $clientClass->employmentSave($request);
+        return $client;
+    }
 }

@@ -232,7 +232,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">Employer Name:</label>
                                         <div class="col-md-6">
-                                            {{ $client->employer_name }}
+                                            {{ $client->employer_name }} | <small style="color: #0a001f"><a href="{{ route('client.employment.update', $client->id) }}">Update Employment Record</a></small>
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +258,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">Employment:</label>
                                         <div class="col-md-6">
-                                           <span class="text-danger">Unemployed</span>
+                                           <span class="text-danger">Unemployed</span> | <small style="color: #0a001f"><a href="{{ route('client.employment.update', $client->id) }}">Update Employment Record</a></small>
                                         </div>
                                     </div>
                                 </div>

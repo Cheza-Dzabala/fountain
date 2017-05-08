@@ -62,7 +62,7 @@
                 'physicalAddress' => $request->physicalAddress,
                 'postalAddress' => $request->postalAddress,
                 'emailAddress' => $request->emailAddress,
-                'registration_number' => $request->registration_number,
+
                 'createdBy' => Auth::user()['id']
             ]);
         }

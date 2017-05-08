@@ -14,9 +14,9 @@ class DataTypeMutators extends Migration
     {
         //
         Schema::table('amortizationSchedule', function ($table){
-            $table->float('interest', 12,2)->change();
-            $table->float('total', 12,2)->change();
-            $table->integer('principle', 12,2)->change();
+            $table->integer('interest')->change();
+            $table->integer('total')->change();
+            $table->integer('principle')->change();
             $table->boolean('isSettled')->change();
         });
 

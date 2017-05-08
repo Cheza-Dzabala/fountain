@@ -86,6 +86,8 @@ class clientsClass {
             if(!file_exists($destinationPath)) \File::makeDirectory($destinationPath, 0777, true);
             $client_save_path = $destinationPath . $filename;
             $img->save($client_save_path, 60);
+        }else{
+            $client_save_path = null;
         }
 
         if ($request->hasFile('idImage')) {
@@ -97,6 +99,8 @@ class clientsClass {
             $id_save_path = $destinationPath . $filename;
             $img->save($id_save_path, 60);
             //return array($client_save_path, $id_save_path);
+        }else{
+            $id_save_path = null;
         }
        return array($client_save_path, $id_save_path);
     }
@@ -163,6 +167,63 @@ class clientsClass {
             $client->active_employment_record = $employmentRecord->id;
             $client->save();
         }
+    }
+
+    public function employmentUpdate($id)
+    {
+        $client = Clients::whereId($id)->first();
+        $author = User::whereId($client->createdBy)->first();
+        $client = array_add($client, 'author', $author->username);
+
+        $employers = employers::get();
+        return view('clients.updateEmployment', compact('client', 'employers'));
+    }
+
+    public function employmentSave($request)
+    {
+        $client = Clients::whereId($request->client)->first();
+        $client->employmentStatus = $request->employmentStatus;
+        $currentRecord = employmentRecords::whereId($client->active_employment_record);
+        if($client->employmentStaus == 1)
+        {
+            if ($request->employmentStatus == 1)
+            {
+                $client->employer_id = $request->employer_id;
+                $client->position = $request->position;
+
+
+                $currentRecord->employmentEndDate = $request->employmentEndDate;
+                $currentRecord->save();
+
+                $employmentRecord = employmentRecords::create([
+                    'client_id' => $client->id,
+                    'employer_id' => $request->employer_id,
+                    'employmentStartDate' => $request->employmentStartDate,
+                    'recordedBy' => Auth::user()['id'],
+                ]);
+                $client->active_employment_record = $employmentRecord->id;
+                $client->save();
+            }else{
+                $client->position =  null;
+                $client->employer_id = null;
+                $client->active_employment_record = null;
+                $currentRecord->employmentEndDate = $request->employmentEndDate;
+                $currentRecord->save();
+            }
+
+        }else{
+            $client->employer_id = $request->employer_id;
+            $client->position = $request->position;
+            $employmentRecord = employmentRecords::create([
+                'client_id' => $client->id,
+                'employer_id' => $request->employer_id,
+                'employmentStartDate' => $request->employmentStartDate,
+                'recordedBy' => Auth::user()['id'],
+            ]);
+            $client->active_employment_record = $employmentRecord->id;
+            $client->save();
+        }
+        return redirect()->route('clients');
     }
 
 

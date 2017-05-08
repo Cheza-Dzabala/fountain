@@ -65,6 +65,22 @@ Route::group(['middleware' => 'auth'], function(){
         ]
     );
 
+    Route::get('clients/employment/update/{id}',
+        [
+            'as' => 'client.employment.update',
+            'uses' => 'clientsController@employmentUpdate'
+        ]
+    );
+
+    Route::post('clients/employment/save',
+        [
+            'as' => 'client.employment.save',
+            'uses' => 'clientsController@employmentSave'
+        ]
+    );
+
+
+
     Route::get('/clients/{id}',
         [
             'as' => 'client.view',

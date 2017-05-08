@@ -65,12 +65,12 @@ class armotizationSchedule extends Model
 
     public function scopeGetAug($query)
     {
-        return $query->whereMonth('settlementDate', '=', 08);
+        return $query->whereMonth('settlementDate', '=', '08');
     }
 
     public function scopeGetSep($query)
     {
-        return $query->whereMonth('settlementDate', '=', 09);
+        return $query->whereMonth('settlementDate', '=', '09');
     }
     public function scopeGetOct($query)
     {

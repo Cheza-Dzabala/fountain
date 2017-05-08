@@ -58,12 +58,12 @@ class loans extends Model
 
     public function scopeGetAug($query)
     {
-        return $query->whereMonth('disbursementDate', '=', 08);
+        return $query->whereMonth('disbursementDate', '=', '08');
     }
 
     public function scopeGetSep($query)
     {
-        return $query->whereMonth('disbursementDate', '=', 09);
+        return $query->whereMonth('disbursementDate', '=', '09');
     }
      public function scopeGetOct($query)
     {

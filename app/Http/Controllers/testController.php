@@ -21,7 +21,6 @@ class testController extends Controller
         {
             $interest = $interest / 1200;
             return ($interest * -$loanAmount * pow((1 + $interest), $months) / (1 - pow((1 + $interest), $months)));
-
         }
 
         $amount = pmt($interest, $months, $loanAmount);
